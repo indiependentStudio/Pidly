@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Pidly.Models;
+using System.Data.Entity;
 
 namespace Pidly.Controllers
 {
@@ -20,7 +21,7 @@ namespace Pidly.Controllers
 
         public ViewResult Index()
         {
-            var customers = _context.Customers.ToList();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             return View(customers);
         }
