@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Pidly.Models;
 using System.Data.Entity;
+using Pidly.ViewModels;
 
 namespace Pidly.Controllers
 {
@@ -17,6 +18,18 @@ namespace Pidly.Controllers
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
+        }
+
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(viewModel);
         }
 
         public ViewResult Index()
