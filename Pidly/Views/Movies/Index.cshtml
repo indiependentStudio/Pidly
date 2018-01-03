@@ -7,6 +7,11 @@
 }
 
 <h2>Movies</h2>
+
+@*The 0 is sent as the Id to the New Action and hence the View*@
+@Html.ActionLink("Add New Movie", "New", "Movies", 0, new { @class = "btn btn-primary" })
+
+<br/><br/>
 <table class="table table-bordered table-hover">
     <thead>
     <tr>
