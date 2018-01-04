@@ -20,12 +20,19 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var movie in Model)
+    @if (!Model.Any())
     {
-        <tr>
-            <td>@Html.ActionLink(movie.Name, "Details", new {id = movie.Id} )</td>
-            <td>@movie.Genre.Name</td>
-        </tr>
+        <p>We don't have any movies yet.</p>
+    }
+    else
+    {
+        foreach (var movie in Model)
+         {
+             <tr>
+                 <td>@Html.ActionLink(movie.Name, "Edit", "Movies" , new {id = movie.Id}, null)</td>
+                 <td>@movie.Genre.Name</td>
+             </tr>
+         }
     }
     </tbody>
 </table>

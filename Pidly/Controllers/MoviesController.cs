@@ -29,6 +29,9 @@ namespace Pidly.Controllers
             {
                 Genres = genres
             };
+
+            ViewBag.Title = "New";
+
             return View("MovieForm", viewModel);
         }
 
@@ -89,6 +92,26 @@ namespace Pidly.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new MovieFormViewModel()
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+            ViewBag.Title = "Edit";
+
+            return View("MovieForm", viewModel);
         }
     }
 }
